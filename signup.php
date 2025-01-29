@@ -6,14 +6,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $username, $email, $password);
+    // Check if email already exists
+    $check_sql = "SELECT * FROM users WHERE email = ?";
+    $stmt = $conn->prepare($check_sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if ($stmt->execute()) {
-        echo "Signup successful! <a href='login.php'>Login here</a>";
+    if ($result->num_rows > 0) {
+        echo "Email already registered! <a href='login.php'>Login here</a>";
     } else {
-        echo "Error: " . $stmt->error;
+        // Insert new user
+        $sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("sss", $username, $email, $password);
+
+        if ($stmt->execute()) {
+            echo "Signup successful! <a href='login.php'>Login here</a>";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
     }
 }
 ?>
