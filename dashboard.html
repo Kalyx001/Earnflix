@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li><a href="#">🏠 Home</a></li>
+            <li><a href="#">📊 My Plans</a></li>
+            <li><a href="#">✅ Tasks</a></li>
+            <li><a href="#">💰 Wallet</a></li>
+            <li><a href="#">🔄 Withdraw</a></li>
+            <li><a href="#">⚙️ Settings</a></li>
+            <li><a href="#">🚪 Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Dashboard Content -->
+    <div class="main-content">
+        <header>
+            <h1>Welcome, User</h1>
+            <p>Your earnings overview</p>
+        </header>
+
+        <div class="dashboard-cards">
+            <div class="card">
+                <h3>💰 Wallet Balance</h3>
+                <p id="wallet-balance">$100.00</p>
+            </div>
+            <div class="card">
+                <h3>📅 Active Plans</h3>
+                <p>2 Plans Running</p>
+            </div>
+            <div class="card">
+                <h3>✅ Tasks Completed</h3>
+                <p id="task-count">3/5</p>
+            </div>
+        </div>
+
+        <!-- Task Section -->
+        <section class="tasks">
+            <h2>Daily Tasks</h2>
+            <p>Complete tasks to earn rewards.</p>
+            <button id="complete-task-btn">Complete Task</button>
+        </section>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
